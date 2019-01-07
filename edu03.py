@@ -47,7 +47,7 @@ s.bind(('0.0.0.0', 2222))
 s.listen(10)
 logger = logging.getLogger()
 
-def server(conn,):
+def server(conn, logger):
     while True:
         data = conn.recv(1024)
         logger.debug('server executing')
