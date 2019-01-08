@@ -30,22 +30,22 @@ class MyThread(threading.Thread):
         server(self.conn, self.logger)
 
 
-    def get_logger():
-        logger = logging.getLogger("threading_example")
-        logger.setLevel(logging.DEBUG)
+def get_logger():
+    logger = logging.getLogger("threading_example")
+    logger.setLevel(logging.DEBUG)
 
-        fh = logging.FileHandler("threading_class.log")
-        fmt = '%(asctime)s - %(threadName)s - %(levelname)s - %(message)s'
-        formatter = logging.Formatter(fmt)
-        fh.setFormatter(formatter)
+    fh = logging.FileHandler("threading_class.log")
+    fmt = '%(asctime)s - %(threadName)s - %(levelname)s - %(message)s'
+    formatter = logging.Formatter(fmt)
+    fh.setFormatter(formatter)
 
-        logger.addHandler(fh)
-        return logger
+    logger.addHandler(fh)
+    return logger
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('0.0.0.0', 2222))
 s.listen(10)
-logger = logging.getLogger("threading_example")
+logger = get_logger()
 
 def server(conn, logger):
     while True:
