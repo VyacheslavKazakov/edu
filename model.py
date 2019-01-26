@@ -7,6 +7,8 @@ class MyClass:
     def func2(self):
         print(4)
         self._get_connection()
+        self._get_connection().channel()
+        self._get_connection().basic()
         print(5)
 
     def consumer(self):
