@@ -48,7 +48,7 @@ class TestStringMethods(unittest.TestCase):
     def test_renew(self, mocked):
         print('#############')
         print('mock configuration')
-        channel = mock.MagicMock(return_value=None)
+        channel = mock.MagicMock()
         basic = mock.MagicMock(return_value='basic')
         clever = mock.MagicMock(return_value='clever')
         channel.basic = basic
@@ -77,14 +77,22 @@ class TestStringMethods(unittest.TestCase):
         print(clever.mock_calls)
         print('#############')
         print('#############')
+        mocked.channel()
+        # mocked.channel().basic()
+        # mocked.channel().clever()
+        mocked.channel.basic()
+        mocked.channel.clever()
         # self.assertEqual(basic(1), 'basic')
         # self.assertEqual(clever(1), 'clever')
-        mocked.assert_called_once()
-        # channel.assert_called_once() # not called directly
+        mocked.assert_called()
+        # mocked.channel.assert_called_once()
+        mocked.channel().assert_called_once() # not called directly
         # basic.assert_called_once()
         # clever.assert_called_once()
-
-
+        print(mocked.call_count)
+        print(channel.call_count)
+        print(basic.call_count)
+        print(clever.call_count)
 
 
 if __name__ == '__main__':
